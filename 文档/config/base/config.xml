@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- base config -->
+<config>
+	<!-- ########## dip socket config ########## -->
+	<socketServerIp>172.16.1.100</socketServerIp>
+	<socketServerPort>7007</socketServerPort>
+	
+	<!-- ################# dip config ################### -->
+	<dip_xml_compress>1</dip_xml_compress>
+	<dip_xml_group>dipgroup</dip_xml_group>
+	<dip_xml_queue_name>etlque</dip_xml_queue_name>
+	
+	<loader_class_name>com.r7data.jdip.activemq.loader.DipActivemqLoader</loader_class_name>
+</config>

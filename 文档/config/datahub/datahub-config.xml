@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- activemq loader config -->
+<config>
+	<default.endpoint>http://dh-cn-hangzhou.aliyuncs.com</default.endpoint>
+	<default.project>r7_test</default.project>
+	
+	<!-- ################################# -->
+	
+	<default.topic>testTopic</default.topic>
+	<default.access.id>sbPFQ1F3Itx2x6eu</default.access.id>
+	<default.access.key>2wSYvpzB5F00Qqsw68M4HRrSG67fVN</default.access.key>
+	
+	<!-- ##=================================================================================================================## -->
+	<!-- ######################################## datahub config ######################################## -->
+	
+	<datahub_endpoint>http://dh-cn-hangzhou.aliyuncs.com</datahub_endpoint>
+	<datahub_project>r7_test</datahub_project>
+	
+	<!-- ########## r7 datahub ########## -->
+	
+	<queue_name>active_dip_que</queue_name>
+	<queue_name>active_dip_que</queue_name>
+	<queue_name>active_dip_que</queue_name>
+	<queue_name>active_dip_que</queue_name>
+	<queue_name>active_dip_que</queue_name>
+	<queue_name>active_dip_que</queue_name>
+	<queue_name>active_dip_que</queue_name>
+	
+</config>

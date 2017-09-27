@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- kafka loader config -->
+<config>
+	<dip_kafka_topic>test_ysq_topic</dip_kafka_topic>
+	<zk_hosts>172.16.1.102:2181,172.16.1.103:2181,172.16.1.104:2181</zk_hosts>
+	<kafka_brokers>172.16.1.102:9092,172.16.1.103:9092,172.16.1.104:9092</kafka_brokers>
+
+	<kafka_group_id>testGroup</kafka_group_id>
+	<json_type>1</json_type>
+	<kafka_external_config>
+		{
+			"kdc":"gaj-manager11:9093,gaj-manager12:9093",
+			"principal":"hdfs",
+			"use.global.authentication":"false",
+			"realm":"TDH",
+			"keytab":"/dip/hdfs.keytab"
+		}
+	</kafka_external_config>
+	
+</config>

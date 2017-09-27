@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- activemq loader config -->
+<config>
+	<!-- #hdfs loader config -->
+	
+	<cache_file_base_dir>D:/testFile/hadoop/cache</cache_file_base_dir>
+	<hdfs_file_base_dir>/groupData</hdfs_file_base_dir>
+	<hdfs_path_format>oraLog/{yyyy}/{MM}/{yyyyMMddHH}.log</hdfs_path_format>
+	
+</config>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- activemq loader config -->
+<config>
+	<activemq_broker_url>tcp://172.16.1.100:61616</activemq_broker_url>
+	<queue_name>active_dip_que</queue_name>
+	<json_type>1</json_type>
+</config>
