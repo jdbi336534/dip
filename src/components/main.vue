@@ -1,3 +1,39 @@
+<template>
+  <div class="director-layout">
+    <div class="header">
+      <jd-header /> </div>
+    <div class="body" :class="{bodycon:collapse}">
+      <div class="menu">
+        <jd-aside @collapse="handCollapse" /> </div>
+      <div class="content">
+        <router-view></router-view>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  import jdAside from './common/aside/index';
+  import jdHeader from './common/header/index';
+  export default {
+    data() {
+      return {
+        collapse: false
+      }
+    },
+    components: {
+      jdAside,
+      jdHeader
+    },
+    created() {},
+    mounted() {},
+    methods: {
+      handCollapse(val) {
+        this.collapse = val;
+      },
+    }
+  }
+
+</script>
 <style lang="scss" scoped>
   .director-layout {
     height: 100vh;
@@ -24,7 +60,7 @@
     }
     .bodycon {
       .content {
-         height: calc(100vh - 47px);
+        height: calc(100vh - 47px);
         margin-left: 64px;
         -webkit-transition: all .3s ease-out;
         -o-transition: all .3s ease-out;
@@ -34,43 +70,3 @@
   }
 
 </style>
-<template>
-  <div class="director-layout">
-    <div class="header">
-      <jd-header /> </div>
-    <div class="body" :class="{bodycon:collapse}">
-      <div class="menu">
-        <jd-aside @collapse="handCollapse" /> </div>
-      <div class="content"></div>
-    </div>
-    <!--<router-view></router-view> -->
-  </div>
-</template>
-<script>
-  import jdAside from './common/aside/index';
-  import jdHeader from './common/header/index';
-  export default {
-    data() {
-      return {
-        collapse: false
-      }
-    },
-    watch: {
-      $route(to, from) {}
-    },
-    components: {
-      jdAside,
-      jdHeader
-    },
-    created() {},
-    mounted() {
-      
-    },
-    methods: {
-      handCollapse(val) {
-        this.collapse = val;
-      },
-    }
-  }
-
-</script>
