@@ -1,52 +1,75 @@
 <style lang="scss" scoped>
-
+  .director-layout {
+    height: 100vh;
+    .header {
+      width: 100vw;
+      height: 47px;
+    }
+    .body {
+      height: calc(100vh - 47px);
+      position: relative;
+      .menu {
+        // height: 100vh;
+        // width: 224px;
+        overflow: visible;
+        position: absolute;
+      }
+      .content {
+        margin-left: 224px;
+        height: calc(100vh - 47px);
+        -webkit-transition: all .3s ease-out;
+        -o-transition: all .3s ease-out;
+        transition: all .3s ease-out;
+      }
+    }
+    .bodycon {
+      .content {
+         height: calc(100vh - 47px);
+        margin-left: 64px;
+        -webkit-transition: all .3s ease-out;
+        -o-transition: all .3s ease-out;
+        transition: all .3s ease-out;
+      }
+    }
+  }
 
 </style>
 <template>
   <div class="director-layout">
-    <jd-aside />
+    <div class="header">
+      <jd-header /> </div>
+    <div class="body" :class="{bodycon:collapse}">
+      <div class="menu">
+        <jd-aside @collapse="handCollapse" /> </div>
+      <div class="content"></div>
+    </div>
     <!--<router-view></router-view> -->
   </div>
 </template>
 <script>
   import jdAside from './common/aside/index';
-  import {
-    getSessionStore
-  } from '@/assets/js/mUtils';
+  import jdHeader from './common/header/index';
   export default {
     data() {
       return {
-        defaultActive: this.$route.path,
-        name: '',
-        open: []
+        collapse: false
       }
     },
     watch: {
-      $route(to, from) {
-        this.getwhichOpen(to.path);
-      }
+      $route(to, from) {}
     },
     components: {
-      jdAside
+      jdAside,
+      jdHeader
     },
-    created() {
-      this.getwhichOpen(this.$route.path);
-    },
+    created() {},
     mounted() {
-      this.name = getSessionStore('DisplayName');
+      
     },
     methods: {
-      getwhichOpen(path) {
-        // 获取当前页面的路由，并是相应菜单展开且高亮
-        let arr = [];
-        arr.push(path.split('/')[1]);
-        this.open = arr;
+      handCollapse(val) {
+        this.collapse = val;
       },
-      handleSelectMenu(path) {
-        this.$router.push({
-          path: path
-        })
-      }
     }
   }
 
