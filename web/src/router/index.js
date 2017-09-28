@@ -8,7 +8,8 @@ Vue.use(Router)
 // const download = r => require.ensure([], () => r(require('../page/download/download')), 'download')
 const blackRouter = r => require.ensure([], () => r(require('@/components/common/blackrouter')), 'blackRouter');
 const main = r => require.ensure([], () => r(require('@/components/main')), 'main');
-const config = r => require.ensure([], () => r(require('@/components/kfkLoader/index')), 'config');
+const list = r => require.ensure([], () => r(require('@/components/kfkLoader/index')), 'list');
+const config = r => require.ensure([], () => r(require('@/components/kfkLoader/config')), 'config');
 
 export default new Router({
   routes: [{
@@ -23,6 +24,10 @@ export default new Router({
       name: 'kfk',
       component: blackRouter,
       children: [{
+        path: 'list',
+        name: 'list',
+        component: list
+      }, {
         path: 'config',
         name: 'config',
         component: config

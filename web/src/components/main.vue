@@ -56,6 +56,7 @@
         -webkit-transition: all .3s ease-out;
         -o-transition: all .3s ease-out;
         transition: all .3s ease-out;
+         overflow-y:auto;
       }
     }
     .bodycon {
@@ -65,6 +66,7 @@
         -webkit-transition: all .3s ease-out;
         -o-transition: all .3s ease-out;
         transition: all .3s ease-out;
+        overflow-y:auto;
       }
     }
   }
