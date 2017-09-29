@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><config>	<dip_kafka_topic>r7dip</dip_kafka_topic>	<zk_hosts>hap02:2181,hap03:2181,hap04:2181</zk_hosts>	<kafka_brokers>hap02:9092,hap03:9092,hap04:9092</kafka_brokers>	<kafka_group_id>testGroup</kafka_group_id>	<json_type>0</json_type>	<kafka_external_config>{
+"kdc":"gaj-manager11:9093,gaj-manager12:9093",
+"principal":"hdfs",
+"use.global.authentication":"false",
+"realm":"TDH",
+"keytab":"/dip/hdfs.keytab"
+}
+</kafka_external_config></config>

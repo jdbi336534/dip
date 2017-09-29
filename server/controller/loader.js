@@ -67,7 +67,7 @@ const Save = async(ctx) => {
     // 先将xml写入文件，再保存数据库
     fs.writeFileSync('public/xml/' + datepath + '/config.xml', baseXml);
     fs.writeFileSync('public/xml/' + datepath + '/kfk-config.xml', kafkaXml);
-    let doc = await Model.insertLoaderData([socketServerIp, socketServerPort, datahubVersion, srcId, dip_xml_compress, dip_xml_group, dip_xml_queue_name, loader_class_name, dip_kafka_topic, zk_hosts, kafka_brokers, kafka_group_id, json_type, kafka_external_config]);
+    let doc = await Model.insertLoaderData([socketServerIp, String(socketServerPort), datahubVersion, srcId, String(dip_xml_compress), dip_xml_group, dip_xml_queue_name, loader_class_name, dip_kafka_topic, zk_hosts, kafka_brokers, kafka_group_id, String(json_type), kafka_external_config]);
     if (doc.affectedRows) {
         ctx.body = {
             code: 200,
@@ -76,7 +76,17 @@ const Save = async(ctx) => {
         }
     }
 };
-
+const AllLoaders = async(ctx) => {
+    // let id = ctx.query.id;
+    let doc = await Model.findAllLoader();
+    if (doc) {
+        ctx.body = {
+            code: 200,
+            data: doc
+        }
+    }
+}
 module.exports = {
-    Save
+    Save,
+    AllLoaders
 };

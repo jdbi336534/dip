@@ -53,9 +53,9 @@
       .content {
         margin-left: 224px;
         height: calc(100vh - 47px);
-        -webkit-transition: all .3s ease-out;
-        -o-transition: all .3s ease-out;
-        transition: all .3s ease-out;
+        -webkit-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
          overflow-y:auto;
       }
     }
@@ -63,9 +63,9 @@
       .content {
         height: calc(100vh - 47px);
         margin-left: 64px;
-        -webkit-transition: all .3s ease-out;
-        -o-transition: all .3s ease-out;
-        transition: all .3s ease-out;
+        -webkit-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
         overflow-y:auto;
       }
     }

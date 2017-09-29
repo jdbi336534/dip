@@ -94,6 +94,14 @@ let insertLoaderData = function (value) {
     let _sql = "insert into loader(socketServerIp,socketServerPort,datahubVersion,srcId,dip_xml_compress,dip_xml_group,dip_xml_queue_name,loader_class_name,dip_kafka_topic,zk_hosts,kafka_brokers,kafka_group_id,json_type,kafka_external_config) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?);"
     return query(_sql, value)
 }
+// 查询所有文章
+let findAllLoader = function () {
+    let _sql = `
+    SELECT * FROM loader
+      `
+    return query(_sql)
+}
+
 // 注册用户
 let insertData = function (value) {
     let _sql = "insert into users(name,pass) values(?,?);"
@@ -190,6 +198,7 @@ let findCommentLength = function (id) {
 
 module.exports = {
     insertLoaderData,
+    findAllLoader,
     query,
     createTable,
     insertData,

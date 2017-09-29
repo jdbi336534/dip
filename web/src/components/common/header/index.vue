@@ -21,9 +21,9 @@
     box-sizing: border-box;
     justify-content: space-between;
     .compony {
-      height: 39px;
-      width: 160px;
-      margin-top:4px;
+      height: 31px;
+      width: 143px;
+      margin-top: 8px;
       margin-left: 20px;
       >img {
         display: block;
