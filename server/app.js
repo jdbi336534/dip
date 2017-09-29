@@ -12,6 +12,7 @@ var config = require('./config/default.js');
 const index = require('./routes/index')
 const users = require('./routes/users')
 const loader = require('./routes/loaderconfig')
+const exec = require('./routes/exec')
 
 // error handler
 onerror(app)
@@ -53,6 +54,7 @@ app.use(async(ctx, next) => {
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 app.use(loader.routes(), loader.allowedMethods())
+app.use(exec.routes(), exec.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
