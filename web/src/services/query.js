@@ -11,6 +11,14 @@ const getparams = {
   credentials: 'include'
 }
 const prefix = '/node';
+
+// 保存kafka loader
+export async function saveConfig(params) {
+  return request(`${prefix}/loader/kafkaloader`, {
+    ...postparams,
+    body: qs.stringify(params)
+  });
+}
 // 登陆
 export async function login(params) {
   return request(`${prefix}/api/login`, {

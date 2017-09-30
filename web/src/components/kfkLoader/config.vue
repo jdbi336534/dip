@@ -90,7 +90,7 @@
           </div>
           <div v-show="step===2">
             <el-button @click="lastStep">上一步</el-button>
-            <el-button type="primary" @click="loaderConfig">保存</el-button>
+            <el-button type="primary" @click="loaderConfig" :loading="loading">保存</el-button>
           </div>
         </div>
       </div>
@@ -98,6 +98,9 @@
   </div>
 </template>
 <script>
+  import {
+    saveConfig
+  } from '@/services/query';
   export default {
     data() {
       var validateServerIp = (rule, value, callback) => {
@@ -132,6 +135,7 @@
       };
       return {
         step: 1,
+        loading: false,
         form: {
           socketServerIp: '',
           socketServerPort: '',
@@ -272,11 +276,11 @@
       }
     },
     components: {},
+    created() {},
     methods: {
       baseConfig() {
         this.$refs['baseForm'].validate((valid) => {
           if (valid) {
-            alert('submit!');
             this.step = 2;
           } else {
             return false;
@@ -287,9 +291,25 @@
         this.step = 1;
       },
       loaderConfig() {
+        this.loading = true;
         this.$refs['loaderForm'].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            saveConfig(this.form).then(res => {
+              this.loading = false;
+              if (!res.state) {
+                return;
+              }
+              this.$alert('保存成功！', '提示', {
+                confirmButtonText: '确定',
+                showClose: false,
+                type: 'success',
+                callback: () => {
+                  this.$router.push({
+                    path: '/main/kfk/list'
+                  });
+                }
+              })
+            })
           } else {
             return false;
           }

@@ -1,4 +1,7 @@
 import './fetch-min.js';
+import {
+  Message
+} from 'element-ui';
 var baseUrl;
 if (process.env.NODE_ENV === 'development') {
   baseUrl = ''; // 这个为空就好了
@@ -32,9 +35,14 @@ export default function request(url, options) {
     .then(checkStatus)
     .then(parseJSON)
     .then((data) => ({
-      data
+      data,
+      state: true
     }))
-    .catch((err) => ({
-      err
-    }));
+    .catch((err) => {
+      Message.error(err.message);
+      return {
+        err,
+        state: false
+      }
+    });
 }

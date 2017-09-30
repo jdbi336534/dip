@@ -16,12 +16,13 @@ Vue.use(Vuex);
 Vue.use(VueCookie);
 Vue.use(ElementUI);
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  template: '<App/>',
-  components: {
-    App
-  }
-});
+  new Vue({
+    el: '#app',
+    router,
+    store,
+    template: '<App/>',
+    components: {
+      App
+    }
+  });
+
