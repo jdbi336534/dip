@@ -19,6 +19,13 @@ export async function saveConfig(params) {
     body: qs.stringify(params)
   });
 }
+// 分页显示kafka loader
+export async function getKafkaconfigList(params) {
+  return request(`${prefix}/loader/allLoaders`, {
+    ...postparams,
+    body: qs.stringify(params)
+  });
+}
 // 登陆
 export async function login(params) {
   return request(`${prefix}/api/login`, {

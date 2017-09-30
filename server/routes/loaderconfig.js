@@ -5,5 +5,5 @@ router.prefix('/loader')
 // 保存loaders
 router.post('/kafkaloader', LoaderCtroller.Save);
 // 查询loader
-router.get('/allLoaders', LoaderCtroller.AllLoaders);
+router.post('/allLoaders', LoaderCtroller.AllLoaders);
 module.exports = router

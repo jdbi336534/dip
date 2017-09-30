@@ -4,77 +4,66 @@
       <div slot="title">KFK配置</div>
       <div slot="body">
         <el-table :data="tableData" stripe>
-          <el-table-column prop="date" label="日期" width="180"> </el-table-column>
-          <el-table-column prop="name" label="姓名" width="180"> </el-table-column>
-          <el-table-column prop="address" label="地址"> </el-table-column>
+          <el-table-column prop="socketServerIp" label="tserver地址" show-overflow-tooltip> </el-table-column>
+          <el-table-column prop="socketServerPort" label="tserver端口" show-overflow-tooltip> </el-table-column>
+        <!--  <el-table-column prop="datahubVersion" label="地址"> </el-table-column>
+          <el-table-column prop="srcId" label="姓名" > </el-table-column>
+          <el-table-column prop="dip_xml_compress" label="地址"> </el-table-column>
+          <el-table-column prop="dip_xml_group" label="姓名" > </el-table-column>
+          <el-table-column prop="dip_xml_queue_name" label="地址"> </el-table-column>-->
+
+          <el-table-column prop="loader_class_name" label="装载类名" show-overflow-tooltip> </el-table-column>
+          <el-table-column prop="dip_kafka_topic" label="kafka topic" show-overflow-tooltip> </el-table-column>
+          <el-table-column prop="zk_hosts" label="zookeeper集群地址" show-overflow-tooltip> </el-table-column>
+          <el-table-column prop="kafka_brokers" label="brokers地址" show-overflow-tooltip> </el-table-column>
+       <!--    <el-table-column prop="kafka_group_id" label="姓名" > </el-table-column>
+          <el-table-column prop="json_type" label="json格式"> </el-table-column>
+         <el-table-column prop="kafka_external_config" label="附加参数" > </el-table-column> -->
+    
         </el-table>
       </div>
     </jd-card>
     <div class="pagination">
       <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage" :page-sizes="[100, 200, 300, 400]"
-        :page-size="100" layout="total, sizes, prev, pager, next, jumper" :total="400"> </el-pagination>
+        :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total"> </el-pagination>
     </div>
-
   </div>
 </template>
 <script>
   import jdCard from '@/components/common/card'
-  // import jdModal from '@/components/common/modal/index'
+  import {
+    getKafkaconfigList
+  } from '@/services/query'
   export default {
     data() {
       return {
-        
         currentPage: 1,
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }]
+        pageSize: 14,
+        total: 0,
+        tableData: []
       }
     },
     components: {
       jdCard,
       // jdModal
     },
+    created() {
+      getKafkaconfigList({
+        page: this.currentPage,
+        size: this.pageSize
+      }).then(res => {
+        if (!res.state) {
+          return;
+        }
+        this.tableData = res.data.data;
+        console.log(res.data.data);
+      })
+    },
     methods: {
       newClick() {
-        console.log('new click')
+         this.$router.push({
+                    path: '/main/kfk/config'
+                  });
       },
       handleConfirm() {},
       handleSizeChange(val) {},
