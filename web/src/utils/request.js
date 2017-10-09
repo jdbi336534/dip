@@ -34,15 +34,21 @@ export default function request(url, options) {
   return fetch(baseUrl + url, options)
     .then(checkStatus)
     .then(parseJSON)
-    .then((data) => ({
-      data,
-      state: true
-    }))
-    .catch((err) => {
-      Message.error(err.message);
+    .then((data) => (data) => {
+      if (data.code !== 200) {
+        throw new Error(data.msg);
+      }
       return {
-        err,
-        state: false
+        success: true,
+        ...data
+      }
+    })
+    .catch((err) => {
+      let msg = error.message || 'Network Error'
+      Message.error(msg);
+      return {
+        success: false,
+        message: msg
       }
     });
 }

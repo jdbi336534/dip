@@ -296,19 +296,18 @@
           if (valid) {
             saveConfig(this.form).then(res => {
               this.loading = false;
-              if (!res.state) {
-                return;
+              if (res.success) {
+                this.$alert('保存成功！', '提示', {
+                  confirmButtonText: '确定',
+                  showClose: false,
+                  type: 'success',
+                  callback: () => {
+                    this.$router.push({
+                      path: '/main/kfk/list'
+                    });
+                  }
+                })
               }
-              this.$alert('保存成功！', '提示', {
-                confirmButtonText: '确定',
-                showClose: false,
-                type: 'success',
-                callback: () => {
-                  this.$router.push({
-                    path: '/main/kfk/list'
-                  });
-                }
-              })
             })
           } else {
             return false;

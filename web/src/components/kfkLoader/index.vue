@@ -6,21 +6,18 @@
         <el-table :data="tableData" stripe>
           <el-table-column prop="socketServerIp" label="tserver地址" show-overflow-tooltip> </el-table-column>
           <el-table-column prop="socketServerPort" label="tserver端口" show-overflow-tooltip> </el-table-column>
-        <!--  <el-table-column prop="datahubVersion" label="地址"> </el-table-column>
+          <!--  <el-table-column prop="datahubVersion" label="地址"> </el-table-column>
           <el-table-column prop="srcId" label="姓名" > </el-table-column>
           <el-table-column prop="dip_xml_compress" label="地址"> </el-table-column>
           <el-table-column prop="dip_xml_group" label="姓名" > </el-table-column>
           <el-table-column prop="dip_xml_queue_name" label="地址"> </el-table-column>-->
-
           <el-table-column prop="loader_class_name" label="装载类名" show-overflow-tooltip> </el-table-column>
           <el-table-column prop="dip_kafka_topic" label="kafka topic" show-overflow-tooltip> </el-table-column>
           <el-table-column prop="zk_hosts" label="zookeeper集群地址" show-overflow-tooltip> </el-table-column>
           <el-table-column prop="kafka_brokers" label="brokers地址" show-overflow-tooltip> </el-table-column>
-       <!--    <el-table-column prop="kafka_group_id" label="姓名" > </el-table-column>
+          <!--    <el-table-column prop="kafka_group_id" label="姓名" > </el-table-column>
           <el-table-column prop="json_type" label="json格式"> </el-table-column>
-         <el-table-column prop="kafka_external_config" label="附加参数" > </el-table-column> -->
-    
-        </el-table>
+         <el-table-column prop="kafka_external_config" label="附加参数" > </el-table-column> --></el-table>
       </div>
     </jd-card>
     <div class="pagination">
@@ -52,18 +49,17 @@
         page: this.currentPage,
         size: this.pageSize
       }).then(res => {
-        if (!res.state) {
-          return;
+        if (res.success) {
+          this.tableData = res.data.data;
+          console.log(res.data.data);
         }
-        this.tableData = res.data.data;
-        console.log(res.data.data);
       })
     },
     methods: {
       newClick() {
-         this.$router.push({
-                    path: '/main/kfk/config'
-                  });
+        this.$router.push({
+          path: '/main/kfk/config'
+        });
       },
       handleConfirm() {},
       handleSizeChange(val) {},
