@@ -44,7 +44,7 @@ export default function request(url, options) {
       }
     })
     .catch((err) => {
-      let msg = error.message || 'Network Error'
+      let msg = err.message || 'Network Error'
       Message.error(msg);
       return {
         success: false,
