@@ -7,68 +7,33 @@ const postparams = {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
 };
-const getparams = {
-  credentials: 'include'
-}
-const prefix = '/node';
+// const getparams = {
+//   credentials: 'include'
+// }
 
 // 保存kafka loader
 export async function saveConfig(params) {
-  return request(`${prefix}/loader/kafkaloader`, {
+  return request(`/loader/kafkaloader`, {
     ...postparams,
     body: qs.stringify(params)
   });
 }
 // 分页显示kafka loader
 export async function getKafkaconfigList(params) {
-  return request(`${prefix}/loader/allLoaders`, {
+  return request(`/loader/allLoaders`, {
     ...postparams,
     body: qs.stringify(params)
   });
 }
-// 登陆
-export async function login(params) {
-  return request(`${prefix}/api/login`, {
-    ...postparams,
-    body: qs.stringify(params)
-  });
+// id 查找GetLoaderById
+export async function getKafkaconfigbyId(params) {
+  return request(`/loader/GetLoaderById?${qs.stringify(params)}`);
 }
-// 注册
-export async function register(params) {
-  return request(`${prefix}/api/register`, {
-    ...postparams,
-    body: qs.stringify(params)
-  });
+// 开启kafka
+export async function startKfk() {
+  return request(`/exec/startKfk`);
 }
-// 提交汇报统计表
-export async function directorsave(params) {
-  return request(`${prefix}/api/directorsave`, {
-    ...postparams,
-    body: qs.stringify(params)
-  });
-}
-// 保存四折标课
-export async function coursesave(params) {
-  return request(`${prefix}/api/coursesave`, {
-    ...postparams,
-    body: qs.stringify(params)
-  });
-}
-// 基础汇报
-export async function basicinfo(params) {
-  return request(`${prefix}/api/basicinfo`, {
-    ...postparams,
-    body: qs.stringify(params)
-  });
-}
-// get获取地域表数据
-export async function getuser(params) {
-  return request(`${prefix}/api/user`, getparams);
-}
-// 助理主管提交报告列表查询
-export async function getAssistantList(params) {
-  return request(`${prefix}/api/getAssistantList`, {
-    ...postparams,
-    body: qs.stringify(params)
-  });
+// 关闭kafka
+export async function stopKfk() {
+  return request(`/exec/stopKfk`);
 }

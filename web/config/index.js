@@ -29,7 +29,8 @@ module.exports = {
         assetsPublicPath: '/',
         proxy: {
             '/node': {
-                target: 'http://localhost:3001',
+                target: 'http://172.16.1.86:3000',
+                // target: 'http://localhost:3000',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/node': ''

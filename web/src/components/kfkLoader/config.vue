@@ -1,6 +1,6 @@
 <template>
   <div class="kfkform">
-    <h1 class="main-title"> <span>新增配置</span> <a href="javascript:void(0)" class="link" style="display:;">
+    <h1 class="main-title"> <span>新增配置</span> <a href="javascript:void(0)" class="link" style="display:;" @click="goback">
     <span >放弃修改</span>
     </a> </h1>
     <div class="beian-flow">
@@ -14,10 +14,10 @@
         <div class="wiki-box">
           <p class="wiki-title">参考文档</p>
           <ul class="wiki-content">
-            <li>324243</li>
-            <li>24243234</li>
+            <li>暂无</li>
+            <!--  <li>24243234</li>
             <li>23424</li>
-            <li>342243</li>
+            <li>342243</li> -->
           </ul>
         </div>
       </div>
@@ -33,13 +33,13 @@
                 <el-input v-model="form.socketServerPort" auto-complete="off" size="small" style="width:300px;"></el-input>
               </el-form-item>
               <el-form-item label="数据集版本" :label-width="formLabelWidth" prop="datahubVersion">
-                <el-input v-model="form.datahubVersion" auto-complete="off" size="small" style="width:300px;" disabled></el-input>
+                <el-input v-model="form.datahubVersion" auto-complete="off" size="small" style="width:300px;"></el-input>
               </el-form-item>
               <el-form-item label="srcid" :label-width="formLabelWidth" prop="srcId">
-                <el-input v-model="form.srcId" auto-complete="off" size="small" style="width:300px;" disabled></el-input>
+                <el-input v-model="form.srcId" auto-complete="off" size="small" style="width:300px;"></el-input>
               </el-form-item>
               <el-form-item label="是否压缩" :label-width="formLabelWidth" prop="dip_xml_compress">
-                <el-select v-model="form.dip_xml_compress" placeholder="请选择" size="small" disabled>
+                <el-select v-model="form.dip_xml_compress" placeholder="请选择" size="small">
                   <el-option label="是" value="1"></el-option>
                   <el-option label="否" value="0"> </el-option>
                 </el-select>
@@ -85,7 +85,7 @@
         </div>
         <div class="procedure">
           <div v-show="step===1">
-            <el-button>返回</el-button>
+            <el-button @click="goback">返回</el-button>
             <el-button type="primary" @click="baseConfig">下一步，loader配置</el-button>
           </div>
           <div v-show="step===2">
@@ -139,9 +139,9 @@
         form: {
           socketServerIp: '',
           socketServerPort: '',
-          datahubVersion: '1.0',
-          srcId: '=172.16.1.25:1521',
-          dip_xml_compress: '1',
+          datahubVersion: '',
+          srcId: '',
+          dip_xml_compress: '',
           dip_xml_group: '',
           dip_xml_queue_name: '',
           loader_class_name: '',
@@ -149,7 +149,7 @@
           zk_hosts: '',
           kafka_brokers: '',
           kafka_group_id: '',
-          json_type: '0',
+          json_type: '',
           kafka_external_config: ''
         },
         formLabelWidth: '150px',
@@ -276,7 +276,9 @@
       }
     },
     components: {},
-    created() {},
+    created() {
+      this.form = Object.assign({}, this.$store.state.common.kafkaList);
+    },
     methods: {
       baseConfig() {
         this.$refs['baseForm'].validate((valid) => {
@@ -312,6 +314,11 @@
           } else {
             return false;
           }
+        });
+      },
+      goback() {
+        this.$router.push({
+          path: '/main/kfk/list'
         });
       }
     }

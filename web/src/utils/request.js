@@ -4,7 +4,7 @@ import {
 } from 'element-ui';
 var baseUrl;
 if (process.env.NODE_ENV === 'development') {
-  baseUrl = ''; // 这个为空就好了
+  baseUrl = '/node'; // 这个为空就好了
 } else {
   baseUrl = ''; // 这个设置成后台的域名
 }
@@ -34,7 +34,7 @@ export default function request(url, options) {
   return fetch(baseUrl + url, options)
     .then(checkStatus)
     .then(parseJSON)
-    .then((data) => (data) => {
+    .then((data) => {
       if (data.code !== 200) {
         throw new Error(data.msg);
       }
@@ -44,7 +44,7 @@ export default function request(url, options) {
       }
     })
     .catch((err) => {
-      let msg = error.message || 'Network Error'
+      let msg = err.message || 'Network Error'
       Message.error(msg);
       return {
         success: false,

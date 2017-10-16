@@ -2,8 +2,11 @@ const router = require('koa-router')()
 const ExecCtroller = require('../controller/exec');
 router.prefix('/exec')
 
-// 保存loaders
-// router.post('/kafkaloader', LoaderCtroller.Save);
-// 查询loader
-router.get('/execShell', ExecCtroller.startKfk);
+// 开启
+router.get('/startKfk', ExecCtroller.startKfk);
+// 关闭
+router.get('/stopKfk', ExecCtroller.stopKfk);
+// 查询状态
+
+
 module.exports = router
