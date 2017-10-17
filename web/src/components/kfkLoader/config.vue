@@ -33,16 +33,16 @@
                 <el-input v-model="form.socketServerPort" auto-complete="off" size="small" style="width:300px;"></el-input>
               </el-form-item>
               <el-form-item label="数据集版本" :label-width="formLabelWidth" prop="datahubVersion">
-                <el-input v-model="form.datahubVersion" auto-complete="off" size="small" style="width:300px;"></el-input>
+                <el-input v-model="form.datahubVersion" auto-complete="off" size="small" style="width:300px;"></el-input><span style="color:red;padding-left:10px;">不建议修改</span>
               </el-form-item>
               <el-form-item label="srcid" :label-width="formLabelWidth" prop="srcId">
-                <el-input v-model="form.srcId" auto-complete="off" size="small" style="width:300px;"></el-input>
+                <el-input v-model="form.srcId" auto-complete="off" size="small" style="width:300px;"></el-input><span style="color:red;padding-left:10px;">不建议修改</span>
               </el-form-item>
               <el-form-item label="是否压缩" :label-width="formLabelWidth" prop="dip_xml_compress">
                 <el-select v-model="form.dip_xml_compress" placeholder="请选择" size="small">
                   <el-option label="是" value="1"></el-option>
                   <el-option label="否" value="0"> </el-option>
-                </el-select>
+                </el-select><span style="color:red;padding-left:10px;">不建议修改</span>
               </el-form-item>
               <!--  <el-input v-model="form.dip_xml_compress" auto-complete="off" size="small" style="width:300px;"></el-input>--></el-form-item>
               <el-form-item label="链路组" :label-width="formLabelWidth" prop="dip_xml_group">
@@ -58,16 +58,16 @@
           </div>
           <div v-show="step===2">
             <el-form :model="form" :rules="rules" ref="loaderForm" label-position="left" style="padding-left:10px;">
-              <el-form-item label="kafka topic" :label-width="formLabelWidth" prop="dip_kafka_topic">
+              <el-form-item label="kafka topic名称" :label-width="formLabelWidth" prop="dip_kafka_topic">
                 <el-input v-model="form.dip_kafka_topic" auto-complete="off" size="small" style="width:300px;"></el-input>
               </el-form-item>
               <el-form-item label="zookeeper集群地址" :label-width="formLabelWidth" prop="zk_hosts">
                 <el-input v-model="form.zk_hosts" auto-complete="off" size="small" style="width:300px;"></el-input>
               </el-form-item>
-              <el-form-item label="kafka borkers地址" :label-width="formLabelWidth" prop="kafka_brokers">
+              <el-form-item label="kafka集群borkers地址" :label-width="formLabelWidth" prop="kafka_brokers">
                 <el-input v-model="form.kafka_brokers" auto-complete="off" size="small" style="width:300px;"></el-input>
               </el-form-item>
-              <el-form-item label="testGroup" :label-width="formLabelWidth" prop="kafka_group_id">
+              <el-form-item label="消费者 groupId" :label-width="formLabelWidth" prop="kafka_group_id">
                 <el-input v-model="form.kafka_group_id" auto-complete="off" size="small" style="width:300px;"></el-input>
               </el-form-item>
               <el-form-item label="写入json格式" :label-width="formLabelWidth" prop="json_type">
@@ -77,7 +77,7 @@
                 </el-select>
                 <!--<el-input v-model="form.json_type" auto-complete="off" size="small" style="width:300px;"></el-input>--></el-form-item>
               <el-form-item label="附加参数" :label-width="formLabelWidth" prop="kafka_external_config">
-                <el-input v-model="form.kafka_external_config" type="textarea" :autosize="{ minRows: 4}" placeholder="请输入内容"
+                <el-input v-model="form.kafka_external_config" type="textarea" :autosize="{ minRows: 4}" placeholder="使用 json 格式的 key:value 对"
                   size="small" auto-complete="off" style="width:300px;"> </el-input>
               </el-form-item>
             </el-form>

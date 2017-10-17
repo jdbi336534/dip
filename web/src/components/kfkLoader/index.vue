@@ -138,14 +138,29 @@
         currentPage: 1,
         pageSize: 30,
         total: 0,
-        tableData: [],
+        tableData: [{
+          socketServerIp: '172.16.1.216',
+          socketServerPort: '7735',
+          datahubVersion: '1.0',
+          srcId: '=172.16.1.25:1521',
+          dip_xml_compress: '1',
+          dip_xml_group: 'adsfas',
+          dip_xml_queue_name: 'afasd',
+          loader_class_name: 'sdfas',
+          dip_kafka_topic: 'asdfs',
+          zk_hosts: 'sdf',
+          kafka_brokers: 'adfsf',
+          kafka_group_id: 'asdfas',
+          json_type: '0',
+          kafka_external_config: 'asfdaaf'
+        }],
         dialogFormVisible: false,
         modaldata: {
           socketServerIp: '',
           socketServerPort: '',
-          datahubVersion: '',
-          srcId: '',
-          dip_xml_compress: '',
+          datahubVersion: '1.0',
+          srcId: '=172.16.1.25:1521',
+          dip_xml_compress: '1',
           dip_xml_group: '',
           dip_xml_queue_name: '',
           loader_class_name: '',
@@ -170,7 +185,7 @@
         size: this.pageSize
       }).then(res => {
         if (res.success) {
-          this.tableData = res.data;
+          // this.tableData = res.data;
           // this.$store.commit('KAFKA', res.data);
           this.total = res.data.length;
         }
@@ -187,9 +202,9 @@
           this.$store.commit('KAFKA', {
             socketServerIp: '',
             socketServerPort: '',
-            datahubVersion: '',
-            srcId: '',
-            dip_xml_compress: '',
+            datahubVersion: '1.0',
+            srcId: '=172.16.1.25:1521',
+            dip_xml_compress: '1',
             dip_xml_group: '',
             dip_xml_queue_name: '',
             loader_class_name: '',
@@ -216,6 +231,7 @@
             title: '消息',
             message: '确定要开启吗？',
             showCancelButton: true,
+            closeOnClickModal: false,
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             beforeClose: (action, instance, done) => {
@@ -223,8 +239,9 @@
                 instance.confirmButtonLoading = true;
                 instance.confirmButtonText = '开启中...';
                 startKfk().then(res => {
+                  instance.confirmButtonLoading = false;
+                  instance.confirmButtonText = '确定';
                   if (res.success) {
-                    instance.confirmButtonLoading = false;
                     done();
                   }
                 });
@@ -232,12 +249,18 @@
                 done();
               }
             }
-          });
+          }).then(action => {
+            this.$message({
+              type: 'success',
+              message: '开启成功！'
+            });
+          }).catch(() => {});
         } else if (state === 'stop') {
           this.$msgbox({
             title: '消息',
             message: '确定要关闭吗？',
             showCancelButton: true,
+            closeOnClickModal: false,
             confirmButtonText: '确定',
             cancelButtonText: '取消',
             beforeClose: (action, instance, done) => {
@@ -245,8 +268,9 @@
                 instance.confirmButtonLoading = true;
                 instance.confirmButtonText = '关闭中...';
                 stopKfk().then(res => {
+                  instance.confirmButtonLoading = false;
+                  instance.confirmButtonText = '确定';
                   if (res.success) {
-                    instance.confirmButtonLoading = false;
                     done();
                   }
                 });
@@ -254,7 +278,12 @@
                 done();
               }
             }
-          });
+          }).then(action => {
+            this.$message({
+              type: 'success',
+              message: '关闭成功！'
+            });
+          }).catch(() => {});
         }
       },
       handleConfirm() {},
