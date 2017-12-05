@@ -24,11 +24,11 @@ function checkStatus(response) {
 }
 
 /**
- * Requests a URL, returning a promise.
+ * 请求 URL, 返回 promise.
  *
- * @param  {string} url       The URL we want to request
- * @param  {object} [options] The options we want to pass to "fetch"
- * @return {object}           An object containing either "data" or "err"
+ * @param  {string} url       请求地址
+ * @param  {object} [options] fetch配置参数
+ * @return {object}           包含data和err的对象
  */
 export default function request(url, options) {
   return fetch(baseUrl + url, options)
